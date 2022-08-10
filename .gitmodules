@@ -1,3 +1,13 @@
-[submodule "SDL"]
-	path = submodules/SDL
-	url = https://github.com/libsdl-org/SDL.git
+[submodule "glew-cmake"]
+	path = submodules/glew
+	url = https://github.com/Perlmint/glew-cmake
+	branch = glew-cmake-release
+[submodule "glm"]
+	path = submodules/glm
+	url = https://github.com/g-truc/glm
+[submodule "glfw"]
+	path = submodules/glfw
+	url = https://github.com/glfw/glfw
+[submodule "tinyobjloader"]
+	path = submodules/tinyobjloader
+	url = https://github.com/tinyobjloader/tinyobjloader
