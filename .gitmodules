@@ -11,3 +11,6 @@
 [submodule "tinyobjloader"]
 	path = submodules/tinyobjloader
 	url = https://github.com/tinyobjloader/tinyobjloader
+[submodule "GLSL-Shader-Includes"]
+	path = submodules/GLSL-Shader-Includes
+	url = https://github.com/tntmeijs/GLSL-Shader-Includes

@@ -8,8 +8,6 @@ public:
   Program(const std::vector<Shader> &shaders);
   ~Program();
 
-  Program *build(const std::string &vs_path, const std::string &fs_path);
-
   void use();
   void unuse();
 
@@ -19,3 +17,5 @@ private:
   GLuint _object;
   std::vector<Shader> _shaders;
 };
+
+Program *buildProgram(const std::string &vs_path, const std::string &fs_path);

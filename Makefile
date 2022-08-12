@@ -9,6 +9,7 @@ GLEW=./submodules/glew
 GLM=./submodules/glm
 GLFW=./submodules/glfw
 TOBJ=./submodules/tinyobjloader
+GLSLSI=./submodules/GLSL-Shader-Includes
 
 
 # Build SDL2
@@ -49,7 +50,11 @@ glm:
 tiny_obj_loader:
 	@cp $(TOBJ)/tiny_obj_loader.h $(INCLUDE)/tiny_obj_loader.h
 
-deps: glfw glew glm tiny_obj_loader
+# setup GLSL-Shader-Includes
+glslsi:
+	@cp $(GLSLSI)/Shadinclude.hpp $(INCLUDE)/Shadinclude.hpp
+
+deps: glfw glew glm tiny_obj_loader glslsi
 
 # Setup build for rt
 setup: 

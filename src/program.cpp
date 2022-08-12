@@ -25,11 +25,10 @@ Program::Program(const std::vector<Shader> &shaders) {
   }
 }
 
-Program *Program::build(const std::string &vs_path,
-                        const std::string &fs_path) {
+Program *buildProgram(const std::string &vs_src, const std::string &fs_src) {
   std::vector<Shader> shaders;
-  shaders.push_back(Shader(vs_path, GL_VERTEX_SHADER));
-  shaders.push_back(Shader(fs_path, GL_FRAGMENT_SHADER));
+  shaders.push_back(Shader(vs_src, GL_VERTEX_SHADER));
+  shaders.push_back(Shader(fs_src, GL_FRAGMENT_SHADER));
   return new Program(shaders);
 }
 
