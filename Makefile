@@ -10,6 +10,7 @@ GLM=./submodules/glm
 GLFW=./submodules/glfw
 TOBJ=./submodules/tinyobjloader
 GLSLSI=./submodules/GLSL-Shader-Includes
+RADEONRAYS=./submodules/RadeonRays
 
 
 # Build SDL2
@@ -54,7 +55,12 @@ tiny_obj_loader:
 glslsi:
 	@cp $(GLSLSI)/Shadinclude.hpp $(INCLUDE)/Shadinclude.hpp
 
-deps: glfw glew glm tiny_obj_loader glslsi
+# setup RadeonRays
+radeonrays:
+	@mkdir -p $(INCLUDE)/RadeonRays
+	@cp $(RADEONRAYS)/*.hpp $(INCLUDE)/RadeonRays
+
+deps: glfw glew glm tiny_obj_loader glslsi radeonrays
 
 # Setup build for rt
 setup: 
@@ -65,7 +71,7 @@ setup:
 
 	@$(MAKE) deps
 
-	@cd $(BUILD) && cmake ..
+	@cd $(BUILD) && cmake -DCMAKE_BUILD_TYPE=Release ..
 
 clean: 
 	rm -rf $(BUILD)

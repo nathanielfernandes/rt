@@ -5,8 +5,8 @@
 struct Options {
   Options() {
     samples = 64;
-    depth = 4;
-    resolution = glm::ivec2(640, 480);
+    depth = 50;
+    resolution = glm::ivec2(800, 600);
   }
 
   int samples;

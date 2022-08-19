@@ -7,6 +7,6 @@ public:
          float aspect, float aperture, float focus_dist);
   Camera(const Camera &other);
 
-  glm::vec3 origin, llc, horizontal, vertical, u, v, w;
+  glm::vec3 origin, llc, horizontal, vertical, u, v, w, lookfrom, lookat;
   float lens_radius;
 };

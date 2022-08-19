@@ -2,10 +2,11 @@
 
 a WIP glsl path tracer
 
+![](https://cdn.discordapp.com/attachments/830269354649452564/1009875575227293716/unknown.png)
 
-doesn't work yet
+![](https://cdn.discordapp.com/attachments/830269354649452564/1009880879641931878/unknown.png)
 
-<!-- ## Sources
+## Sources
 
 https://www.youtube.com/watch?v=-FvAJmq8NvI
 
@@ -17,4 +18,4 @@ https://github.com/mmp/pbrt-v3
 
 https://raytracing.github.io/books/RayTracingInOneWeekend.html
 
-https://raytracing.github.io/books/RayTracingTheNextWeek.html -->
+https://raytracing.github.io/books/RayTracingTheNextWeek.html

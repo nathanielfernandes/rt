@@ -1,37 +1,51 @@
 #pragma once
 
-#include "scene.hpp"
 #include <program.hpp>
+#include <scene.hpp>
 #include <surface.hpp>
 
 class Renderer {
 private:
-  const Scene *scene;
-
-  GLuint trianglesTex, verticesTex, normalsTex;
-  GLuint triangleBuffer, vertexBuffer, normalBuffer;
-
   Surface *surface;
-  int totalLights;
 
-  GLuint ptFBO, accFBO;
-  GLuint ptTex, accTex;
+  // Data buffers and textures
+  GLuint trianglesTex, verticesTex, normalsTex, BVHTex;
+  GLuint trianglesBuffer, verticesBuffer, normalsBuffer, BVHBuffer;
 
-  Program *ptProgram, *accProgram, *postprocessProgram;
+  // Shader sources
+  std::string vertexShaderSrc, ptShaderSrc, tmShaderSrc, outputShaderSrc;
+
+  // Shaders
+  Program *ptShader, *tmShader, *outputShader;
+
+  // Frame buffers
+  GLuint ptFBO, accFBO, outputFBO;
+
+  // Render Texures
+  GLuint ptTex, accTex, outputTex;
+
   int sampleCount;
+  int frameCount;
   bool initialized;
 
-public:
-  Renderer(const Scene *scene);
-  ~Renderer();
-  glm::ivec2 screen;
-
-  void init();
-  void genBuffers();
   void loadShaders();
-  void setUniforms();
+  void initFBOs();
+  void initShaders();
+  void initDataBuffers();
+  void setUniforms(GLuint shaderObject);
 
-  void finish();
+public:
+  int depthMax;
+
+  Renderer(Scene *scene);
+  const Scene *scene;
+  void reloadShaders();
+  void reloadAcc();
+
+  ~Renderer();
+
+  glm::ivec2 resolution;
+
   void render();
   void draw();
   void update(float dt);

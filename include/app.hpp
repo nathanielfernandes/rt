@@ -10,7 +10,6 @@ public:
   App(Scene *scene);
   ~App();
 
-  void init();
   void init_renderer();
   void run();
   void finish();
@@ -19,11 +18,15 @@ private:
   Renderer *renderer;
   GLFWwindow *window;
   bool initialized;
+  bool moving;
 
   void render();
 
-  static void glfw_error_callback(int error, const char *description) {
-    fprintf(stdout, "GLFW Error: %s\n", description);
-    exit(1);
-  }
+  static void glfw_error_callback(int error, const char *description);
+
+  static void glfw_key_callback(GLFWwindow *window, int key, int scancode,
+                                int action, int mods);
+
+  void handle_input(float dt);
+  bool key_pressed(int key);
 };

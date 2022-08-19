@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 # set the project name
 project(rt)
 
-file(GLOB_RECURSE rt_src CONFIGURE_DEPENDS src/*.cpp src/*.hpp)
+file(GLOB_RECURSE rt_src CONFIGURE_DEPENDS src/*.cpp src/*.hpp submodules/RadeonRays/*)
 
 add_executable(rt ${rt_src})
 

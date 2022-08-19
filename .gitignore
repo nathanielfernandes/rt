@@ -1,2 +1,6 @@
 /build
 compile_flags.txt
+.DS_Store
+assets/*.obj
+shaders/old
+.vscode

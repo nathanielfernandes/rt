@@ -10,12 +10,39 @@ struct Camera {
 	float lens_radius;
 };
 
+uniform Camera camera;
+
 struct Ray {
 	vec3 origin, direction;
 };
 
+// temp Materials
+#define LAMBERTIAN 0
+#define METAL 1
+#define DIELECTRIC 2
+#define EMISSIVE 3
 
-//internal RNG state 
-uvec4 seed;
-ivec2 pixel;
+struct Material {
+   	vec3 color;
+};
+
+struct HitRecord {
+	//              front facing normal
+	vec3 point, normal, ffnormal, bary;
+	vec2 uv;
+	float dist;
+	// int ID, matID;
+	ivec3 ID;
+
+	vec4 v0, v1, v2;
+	Material mat;
+};
+
+
+struct Sphere{
+    vec3 center;
+    float radius;
+    Material mat;
+};
+
 // ------------------- END GLOBALS ------------------------ //

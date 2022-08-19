@@ -18,4 +18,4 @@ private:
   std::vector<Shader> _shaders;
 };
 
-Program *buildProgram(const std::string &vs_path, const std::string &fs_path);
+Program *buildProgram(const std::string &vs_src, const std::string &fs_src);

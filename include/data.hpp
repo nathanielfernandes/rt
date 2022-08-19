@@ -2,21 +2,17 @@
 
 #include <glm/glm.hpp>
 
-struct Triangle {
-  glm::vec4 indices;
-};
+//    vertex/normal
+//       ___|___
+// vec4 (x, y, z, w)
+//                |
+//           uv texture coords
 
-struct Normal {
-  glm::vec3 normals[3];
-};
+typedef glm::vec4 VertexU;
+typedef glm::vec4 NormalV;
 
-// struct TexCoord {
-//   glm::vec2 texcoords[3];
-// };
-
-struct Vertex {
-  glm::vec3 vertex;
-};
+// x,y,z are indices pointing to vertices/normals in the vertex/normal array
+typedef glm::ivec3 Triangle;
 
 struct Material {
   Material() {

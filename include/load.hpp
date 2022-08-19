@@ -1,7 +1,9 @@
 
 #pragma once
 
-#include "scene.hpp"
+#include "data.hpp"
 #include <string.h>
+#include <vector>
 
-bool LoadModel(Scene *scene, const std::string &fp);
+bool LoadModel(const std::string &fp, std::vector<VertexU> &vertices,
+               std::vector<NormalV> &normals);
