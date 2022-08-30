@@ -7,15 +7,16 @@ bool lambertian_scatter(Ray r,HitRecord hit,out vec3 attenuation,out Ray scatter
     return true;
 }
 
-// bool metal_scatter(Ray r,HitRecord hit,out vec3 attenuation,out Ray scattered){
-//     vec3 reflected=reflect(normalize(r.direction),hit.normal);
-//     if(dot(reflected,hit.normal)>0.){
-//         scattered=Ray(hit.point,reflected+hit.mat.fuzz*randomInUnitSphere(seed),r.time);
-//         attenuation=texure_color_at(hit);
-//         return true;
-//     }
-//     return false;
-// }
+bool metal_scatter(Ray r,HitRecord hit,out vec3 attenuation,out Ray scattered){
+    vec3 reflected=reflect(normalize(r.direction),hit.normal);
+    if(dot(reflected,hit.normal)>0.){
+        scattered=Ray(hit.point,reflected+hit.mat.fuzz*randomInUnitSphere(g_seed));
+        // attenuation=texure_color_at(hit);
+        attenuation=hit.mat.albedo;
+        return true;
+    }
+    return false;
+}
 
 // float schlick(float cosine,float ref_idx){
 //     float r0=(1.-ref_idx)/(1.+ref_idx);
@@ -64,9 +65,9 @@ bool scatter(Ray r,HitRecord hit,out vec3 attenuation,out vec3 emitted,out Ray s
         return lambertian_scatter(r,hit,attenuation,scattered);
     }
     
-    // if(hit.mat.type==METAL){
-    //     return metal_scatter(r,hit,attenuation,scattered);
-    // }
+    if(hit.mat.type==METAL){
+        return metal_scatter(r,hit,attenuation,scattered);
+    }
     
     // if(hit.mat.type==DIELECTRIC){
     //     return dielectric_scatter(r,hit,attenuation,scattered);

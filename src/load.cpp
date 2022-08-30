@@ -17,6 +17,16 @@ Material convertMat(tinyobj::material_t mat) {
     return m;
   }
 
+  m.albedo.x = mat.specular[0];
+  m.albedo.y = mat.specular[1];
+  m.albedo.z = mat.specular[2];
+
+  if (m.albedo != glm::vec4(0.0, 0.0, 0.0, 1.0)) {
+    m.fuzz = 0.0;
+    m.materialType = METAL;
+    return m;
+  }
+
   m.albedo.x = mat.diffuse[0];
   m.albedo.y = mat.diffuse[1];
   m.albedo.z = mat.diffuse[2];
