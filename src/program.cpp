@@ -1,4 +1,6 @@
 #include <program.hpp>
+#include <stdexcept>
+
 
 Program::Program(const std::vector<Shader> &shaders) {
   _object = glCreateProgram();

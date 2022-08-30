@@ -2,7 +2,7 @@
 #pragma once
 
 #include "data.hpp"
-#include <string.h>
+#include <string>
 #include <vector>
 
 bool LoadModel(const std::string &fp, std::vector<Triangle> &triangles,
