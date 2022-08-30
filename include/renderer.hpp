@@ -9,8 +9,9 @@ private:
   Surface *surface;
 
   // Data buffers and textures
-  GLuint trianglesTex, verticesTex, normalsTex, BVHTex;
-  GLuint trianglesBuffer, verticesBuffer, normalsBuffer, BVHBuffer;
+  GLuint trianglesTex, verticesTex, normalsTex, materialsTex, BVHTex;
+  GLuint trianglesBuffer, verticesBuffer, normalsBuffer, materialsBuffer,
+      BVHBuffer;
 
   // Shader sources
   std::string vertexShaderSrc, ptShaderSrc, tmShaderSrc, outputShaderSrc;

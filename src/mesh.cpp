@@ -38,7 +38,7 @@ float sphericalPhi(const glm::vec3 &v) {
 
 bool Mesh::LoadFromFile(const std::string &fp) {
   name = fp;
-  return LoadModel(fp, verticesU, normalsV);
+  return LoadModel(fp, triangles, verticesU, normalsV, materials);
 }
 
 void Mesh::BuildBVH() {

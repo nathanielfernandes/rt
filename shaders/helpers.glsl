@@ -15,6 +15,16 @@
 //     pcg4d(seed); return float(seed.x) / float(0xffffffffu);
 // }
 
+vec3 toLinear(vec3 c)
+{
+    return pow(c,vec3(2.2));
+}
+
+vec3 toGamma(vec3 c)
+{
+    return pow(c,vec3(1./2.2));
+}
+
 
 
 //

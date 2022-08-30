@@ -23,7 +23,11 @@ struct Ray {
 #define EMISSIVE 3
 
 struct Material {
-   	vec3 color;
+	int type;
+	float ir;
+	float fuzz;
+	
+   	vec3 albedo;
 };
 
 struct HitRecord {
@@ -33,6 +37,7 @@ struct HitRecord {
 	float dist;
 	// int ID, matID;
 	ivec3 ID;
+	int matID;
 
 	vec4 v0, v1, v2;
 	Material mat;

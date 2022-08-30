@@ -5,26 +5,53 @@
 #include <load.hpp>
 #include <tiny_obj_loader.h>
 
-bool LoadModel(const std::string &fp, std::vector<VertexU> &vertices,
-               std::vector<NormalV> &normals) {
+Material convertMat(tinyobj::material_t mat) {
+  Material m = Material();
+
+  m.albedo.x = mat.emission[0];
+  m.albedo.y = mat.emission[1];
+  m.albedo.z = mat.emission[2];
+
+  if (m.albedo != glm::vec4(0.0, 0.0, 0.0, 1.0)) {
+    m.materialType = EMISSIVE;
+    return m;
+  }
+
+  m.albedo.x = mat.diffuse[0];
+  m.albedo.y = mat.diffuse[1];
+  m.albedo.z = mat.diffuse[2];
+
+  return m;
+}
+
+bool LoadModel(const std::string &fp, std::vector<Triangle> &triangles,
+               std::vector<VertexU> &vertices, std::vector<NormalV> &normals,
+               std::vector<Material> &materials) {
   tinyobj::attrib_t attrib;
   std::vector<tinyobj::shape_t> shapes;
-  std::vector<tinyobj::material_t> materials;
+  std::vector<tinyobj::material_t> mats;
   std::string warn;
   std::string err;
 
   float materialId = 0;
 
-  bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err,
-                              fp.c_str(), 0, true);
+  bool ret = tinyobj::LoadObj(&attrib, &shapes, &mats, &warn, &err, fp.c_str(),
+                              "assets/", true);
 
   if (!ret) {
     std::cout << err << std::endl;
     return false;
   }
 
+  std::vector<int> matIDS;
+
+  for (const auto &mat : mats) {
+    materials.push_back(convertMat(mat));
+  }
+
   for (const auto &shape : shapes) {
     int offset = 0;
+
     for (const auto &index : shape.mesh.indices) {
 
       // check for texture coords, if not present, calculate them
@@ -42,6 +69,7 @@ bool LoadModel(const std::string &fp, std::vector<VertexU> &vertices,
                                  uv.x));
 
       // if there is no normal, calculate it
+      // TODO: currently broken (not even close to making sense)
       if (attrib.normals.empty()) {
         glm::vec3 normal = glm::normalize(
             glm::cross(glm::vec3(attrib.vertices[3 * index.vertex_index + 0],
@@ -57,12 +85,16 @@ bool LoadModel(const std::string &fp, std::vector<VertexU> &vertices,
                                   attrib.normals[3 * index.normal_index + 2],
                                   uv.y));
       }
+      // matIDS.push_back(shape.mesh.material_ids[index.vertex_index]);
     }
+
+    for (auto i : shape.mesh.material_ids)
+      matIDS.push_back(i);
   }
 
-  // for (int i = 0; i < scene->vertices.size(); i += 3) {
-  //   scene->triangles.push_back(Triangle(i, i + 1, i + 2));
-  // }
+  for (int i = 0; i < vertices.size(); i += 3) {
+    triangles.push_back(Triangle(i, i + 1, i + 2, matIDS[i / 3]));
+  }
 
   return true;
 }

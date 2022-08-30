@@ -28,7 +28,7 @@ public:
   RadeonRays::BvhTranslator bvhTranslator;
   RadeonRays::bbox sceneBounds;
 
-  // std::vector<Material> materials;
+  std::vector<Material> materials;
   // std::vector<Light> lights;
 
   Options options;

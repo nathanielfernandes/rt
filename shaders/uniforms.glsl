@@ -7,6 +7,7 @@ uniform samplerBuffer BVHTex;
 uniform isamplerBuffer trianglesTex;
 uniform samplerBuffer verticesTex;
 uniform samplerBuffer normalsTex;
+uniform samplerBuffer materialsTex;
 
 // temp
 uniform int numTris;

@@ -12,21 +12,30 @@ typedef glm::vec4 VertexU;
 typedef glm::vec4 NormalV;
 
 // x,y,z are indices pointing to vertices/normals in the vertex/normal array
-typedef glm::ivec3 Triangle;
+// w is the materialID
+typedef glm::ivec4 Triangle;
+
+#define LAMBERTIAN 0.0
+#define METAL 1.0
+#define DIELECTRIC 2.0
+#define EMISSIVE 3.0
 
 struct Material {
+  float materialType; // 0 = lambertian, 1 = metal, 2 = dielectric, 3 = emissive
+  float ir;           // index of refraction
+  float fuzz;         // fuzziness float any;
+  float any;
+  // glm::vec4 params;
+  glm::vec4 albedo;
+
   Material() {
-    albedo = glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
-    emission = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
-    params = glm::vec4(0.0f, 0.5f, 0.0f, 0.0f);
-    // texIDs = glm::vec4(-1.0f, -1.0f, -1.0f, -1.0f);
-  };
-  glm::vec4 albedo; // layout: R,G,B, MaterialType
-  glm::vec4 emission;
-  glm::vec4 params; // layout: metallic, roughness, IOR, transmittance
-  //   glm::vec4 texIDs; // layout: (Texture Map IDs) albedo ID,
-  //   metallicRoughness
-  //                     // ID, normalMap ID
+    materialType = LAMBERTIAN;
+    ir = 0.0f;
+    fuzz = 0.0f;
+    any = 0.0f;
+    // params = glm::vec4(0.0f);
+    albedo = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+  }
 };
 
 struct Light {

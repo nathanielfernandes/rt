@@ -85,7 +85,7 @@ bool App::key_pressed(int key) {
 void App::handle_input(float dt) {
   if (dt > 2.0) {
     moving = false;
-    renderer->depthMax = renderer->scene->options.depth;
+    // renderer->depthMax = renderer->scene->options.depth;
   }
 
   // move left
@@ -114,7 +114,7 @@ void App::handle_input(float dt) {
   }
 
   if (moving) {
-    renderer->depthMax = 1;
+    // renderer->depthMax = 1;
     renderer->reloadAcc();
   }
 }

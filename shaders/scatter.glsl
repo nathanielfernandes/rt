@@ -1,9 +1,9 @@
 
 bool lambertian_scatter(Ray r,HitRecord hit,out vec3 attenuation,out Ray scattered){
-    // vec3 target = hit.point+hit.normal+randomInUnitSphere(g_seed);
-    // scattered=Ray(hit.point,normalize(target-hit.point));
-    scattered=Ray(hit.point,random_cos_weighted_hemisphere_direction(hit.normal,g_seed));
-    attenuation=hit.mat.color;
+    vec3 target = hit.point+hit.normal+randomInUnitSphere(g_seed);
+    scattered=Ray(hit.point,normalize(target-hit.point));
+    // scattered=Ray(hit.point,random_cos_weighted_hemisphere_direction(hit.normal,g_seed));
+    attenuation=hit.mat.albedo;
     return true;
 }
 
@@ -58,11 +58,11 @@ bool lambertian_scatter(Ray r,HitRecord hit,out vec3 attenuation,out Ray scatter
 
 bool scatter(Ray r,HitRecord hit,out vec3 attenuation,out vec3 emitted,out Ray scattered){
     emitted=vec3(0.);
-    return lambertian_scatter(r,hit,attenuation,scattered);
+    // return lambertian_scatter(r,hit,attenuation,scattered);
 
-    // if(hit.mat.type==LAMBERTIAN){
-    //     return lambertian_scatter(r,hit,attenuation,scattered);
-    // }
+    if(hit.mat.type==LAMBERTIAN){
+        return lambertian_scatter(r,hit,attenuation,scattered);
+    }
     
     // if(hit.mat.type==METAL){
     //     return metal_scatter(r,hit,attenuation,scattered);
@@ -72,10 +72,11 @@ bool scatter(Ray r,HitRecord hit,out vec3 attenuation,out vec3 emitted,out Ray s
     //     return dielectric_scatter(r,hit,attenuation,scattered);
     // }
     
-    // if(hit.mat.type==EMISSIVE){
-    //     emitted=texure_color_at(hit);
-    //     return false;
-    // }
+    if(hit.mat.type==EMISSIVE){
+        // emitted=texure_color_at(hit);
+        emitted=hit.mat.albedo;
+        return false;
+    }
     
     return false;
 }

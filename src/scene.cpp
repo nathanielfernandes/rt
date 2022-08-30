@@ -96,6 +96,8 @@ void Scene::ProcessScene() {
 
   // Copy mesh data
   int verticesCnt = 0;
+  int materialCnt = 0;
+
   printf("Copying Mesh Data\n");
   for (int i = 0; i < meshes.size(); i++) {
     // Copy indices from BVH and not from Mesh.
@@ -105,19 +107,36 @@ void Scene::ProcessScene() {
 
     for (int j = 0; j < numIndices; j++) {
       int index = triIndices[j];
-      int v1 = (index * 3 + 0) + verticesCnt;
-      int v2 = (index * 3 + 1) + verticesCnt;
-      int v3 = (index * 3 + 2) + verticesCnt;
+      // int v1 = (index * 3 + 0) + verticesCnt;
+      // int v2 = (index * 3 + 1) + verticesCnt;
+      // int v3 = (index * 3 + 2) + verticesCnt;
+      Triangle tri = meshes[i]->triangles[index];
+      tri.x += verticesCnt;
+      tri.y += verticesCnt;
+      tri.z += verticesCnt;
+      tri.w += materialCnt;
 
-      triangles.push_back(Triangle(v1, v2, v3));
+      // std::cout << tri.w << std::endl;
+
+      triangles.push_back(tri);
+      // triangles.push_back(Triangle(v1, v2, v3,
+      // meshInstances[i].materialID)); triangles.push_back(Triangle(v1, v2, v3,
+      // 0));
     }
+
+    // for (int j = 0; j < numIndices; j++) {
+    //   triangles.push_back(meshes[i]->triangles[j]);
+    // }
 
     vertices.insert(vertices.end(), meshes[i]->verticesU.begin(),
                     meshes[i]->verticesU.end());
     normals.insert(normals.end(), meshes[i]->normalsV.begin(),
                    meshes[i]->normalsV.end());
+    materials.insert(materials.end(), meshes[i]->materials.begin(),
+                     meshes[i]->materials.end());
 
     verticesCnt += meshes[i]->verticesU.size();
+    materialCnt += meshes[i]->materials.size();
   }
 
   // Copy transforms

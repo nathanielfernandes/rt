@@ -2,5 +2,6 @@
 compile_flags.txt
 .DS_Store
 assets/*.obj
+assets/*.mtl
 shaders/old
 .vscode

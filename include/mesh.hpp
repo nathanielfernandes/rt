@@ -36,8 +36,10 @@ public:
   void BuildBVH();
   bool LoadFromFile(const std::string &filename);
 
+  std::vector<Triangle> triangles;
   std::vector<VertexU> verticesU;
   std::vector<NormalV> normalsV;
+  std::vector<Material> materials;
 
   RadeonRays::Bvh *bvh;
   std::string name;
