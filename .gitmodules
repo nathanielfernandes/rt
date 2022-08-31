@@ -14,3 +14,6 @@
 [submodule "GLSL-Shader-Includes"]
 	path = submodules/GLSL-Shader-Includes
 	url = https://github.com/tntmeijs/GLSL-Shader-Includes
+[submodule "imgui"]
+	path = submodules/imgui
+	url = https://github.com/ocornut/imgui

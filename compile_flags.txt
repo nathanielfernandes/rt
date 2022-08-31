@@ -1,0 +1,5 @@
+--std=c++20
+--include-directory=./usr/local/include
+--include-directory=./include
+--include-directory=./build/vendor/include
+--include-directory=./build/vendor/dir

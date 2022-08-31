@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 # set the project name
 project(rt)
 
-file(GLOB_RECURSE rt_src CONFIGURE_DEPENDS src/*.cpp src/*.hpp submodules/RadeonRays/*)
+file(GLOB_RECURSE rt_src CONFIGURE_DEPENDS src/*.cpp src/*.hpp build/vendor/dir/*)
 
 add_executable(rt ${rt_src})
 
@@ -11,6 +11,7 @@ target_include_directories(rt PUBLIC /usr/local/include)
 
 target_include_directories(rt PUBLIC ./include)
 target_include_directories(rt PUBLIC ./build/vendor/include)
+target_include_directories(rt PUBLIC ./build/vendor/dir)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)

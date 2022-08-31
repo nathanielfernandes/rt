@@ -3,6 +3,7 @@ BUILD=./build
 VENDOR=$(BUILD)/vendor
 INCLUDE=$(VENDOR)/include
 LIB=$(VENDOR)/lib
+DIR=$(VENDOR)/dir
 
 # SDL=./submodules/SDL
 GLEW=./submodules/glew
@@ -11,7 +12,7 @@ GLFW=./submodules/glfw
 TOBJ=./submodules/tinyobjloader
 GLSLSI=./submodules/GLSL-Shader-Includes
 RADEONRAYS=./submodules/RadeonRays
-
+IMGUI=./submodules/imgui
 
 # Build SDL2
 # sdl2:
@@ -57,10 +58,20 @@ glslsi:
 
 # setup RadeonRays
 radeonrays:
-	@mkdir -p $(INCLUDE)/RadeonRays
-	@cp $(RADEONRAYS)/*.hpp $(INCLUDE)/RadeonRays
+	@mkdir -p $(DIR)/RadeonRays
+	@cp $(RADEONRAYS)/* $(DIR)/RadeonRays
 
-deps: glfw glew glm tiny_obj_loader glslsi radeonrays
+
+imgui:
+	@mkdir -p $(DIR)/imgui
+	@cp $(IMGUI)/im* $(DIR)/imgui
+	@cp $(IMGUI)/backends/imgui_impl_glfw.* $(DIR)/imgui
+	@cp $(IMGUI)/backends/imgui_impl_opengl3* $(DIR)/imgui
+
+
+
+
+deps: glfw glew glm tiny_obj_loader glslsi radeonrays imgui
 
 # Setup build for rt
 setup: 
