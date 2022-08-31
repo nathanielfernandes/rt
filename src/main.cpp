@@ -9,7 +9,7 @@ auto main() -> int {
   Options options = Options();
 
   options.samples = 64;
-  options.depth = 50;
+  options.depth = 6;
   options.resolution = glm::ivec2(1000, 1000);
 
   scene->options = options;
