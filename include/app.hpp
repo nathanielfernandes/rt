@@ -16,6 +16,7 @@ public:
 
   void init_renderer();
   void init_gui();
+  void gui();
   void run();
   void finish();
 

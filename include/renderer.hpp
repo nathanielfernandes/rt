@@ -25,7 +25,6 @@ private:
   // Render Texures
   GLuint ptTex, accTex, outputTex;
 
-  int sampleCount;
   int frameCount;
   bool initialized;
 
@@ -36,12 +35,14 @@ private:
   void setUniforms(GLuint shaderObject);
 
 public:
+  int sampleCount;
   int depthMax;
 
   Renderer(Scene *scene);
-  const Scene *scene;
+  Scene *scene;
   void reloadShaders();
   void reloadAcc();
+  void reloadMaterials();
 
   ~Renderer();
 

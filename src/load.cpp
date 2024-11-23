@@ -36,7 +36,7 @@ Material convertMat(tinyobj::material_t mat) {
 
 bool LoadModel(const std::string &fp, std::vector<Triangle> &triangles,
                std::vector<VertexU> &vertices, std::vector<NormalV> &normals,
-               std::vector<Material> &materials) {
+               std::vector<Material> &materials, std::vector<std::string> &mat_names) {
   tinyobj::attrib_t attrib;
   std::vector<tinyobj::shape_t> shapes;
   std::vector<tinyobj::material_t> mats;
@@ -57,6 +57,7 @@ bool LoadModel(const std::string &fp, std::vector<Triangle> &triangles,
 
   for (const auto &mat : mats) {
     materials.push_back(convertMat(mat));
+    mat_names.push_back(mat.name);
   }
 
   for (const auto &shape : shapes) {

@@ -10,7 +10,7 @@ auto main() -> int {
 
   options.samples = 64;
   options.depth = 6;
-  options.resolution = glm::ivec2(1000, 1000);
+  options.resolution = glm::ivec2(1600, 900);
 
   scene->options = options;
 
@@ -22,12 +22,12 @@ auto main() -> int {
 
   scene->setCamera(camera);
 
-  // int mesh_id = scene->AddMesh("assets/monke.obj");
+  // int mesh_id = scene->AddMesh("assets/teapot.obj");
   // MeshInstance instance("monke", mesh_id, glm::mat4(1.0), 0);
   // scene->AddMeshInstance(instance);
 
   int mesh_id2 = scene->AddMesh("assets/cornell.obj");
-  MeshInstance instance2("cornell", mesh_id2, glm::mat4(1.0), 0);
+  MeshInstance instance2("cornell", mesh_id2, glm::mat4(0.0), 0);
   scene->AddMeshInstance(instance2);
 
   App app(scene);

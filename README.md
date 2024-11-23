@@ -2,9 +2,9 @@
 
 a WIP glsl path tracer
 
-![](https://cdn.discordapp.com/attachments/829072008733261834/1014257121359044678/unknown.png)
+![render](./assets/render.png)
 
-![](https://cdn.discordapp.com/attachments/830269354649452564/1009880879641931878/unknown.png)
+![normals](./assets/normals.png)
 
 ## Sources
 

@@ -29,6 +29,7 @@ public:
   RadeonRays::bbox sceneBounds;
 
   std::vector<Material> materials;
+  std::vector<std::string> material_names;
   // std::vector<Light> lights;
 
   Options options;

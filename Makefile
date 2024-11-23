@@ -68,11 +68,7 @@ imgui:
 	@cp $(IMGUI)/backends/imgui_impl_glfw.* $(DIR)/imgui
 	@cp $(IMGUI)/backends/imgui_impl_opengl3* $(DIR)/imgui
 
-
-
-
 deps: glfw glew glm tiny_obj_loader glslsi radeonrays imgui
-
 # Setup build for rt
 setup: 
 	@mkdir -p $(BUILD)

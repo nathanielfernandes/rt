@@ -40,6 +40,7 @@ public:
   std::vector<VertexU> verticesU;
   std::vector<NormalV> normalsV;
   std::vector<Material> materials;
+  std::vector<std::string> material_names;
 
   RadeonRays::Bvh *bvh;
   std::string name;

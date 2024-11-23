@@ -134,6 +134,9 @@ void Scene::ProcessScene() {
                    meshes[i]->normalsV.end());
     materials.insert(materials.end(), meshes[i]->materials.begin(),
                      meshes[i]->materials.end());
+    material_names.insert(material_names.end(),
+                          meshes[i]->material_names.begin(),
+                          meshes[i]->material_names.end());
 
     verticesCnt += meshes[i]->verticesU.size();
     materialCnt += meshes[i]->materials.size();

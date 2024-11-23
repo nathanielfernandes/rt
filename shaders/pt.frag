@@ -13,9 +13,9 @@ in vec2 TexCoords;
 precision highp float;
 
 vec3 sky(Ray r){
-    // float t=.5*(normalize(r.direction).y+1.);
-    // return(1.-t)*vec3(1.)+t*vec3(.5,.7,1.);
-    return vec3(0.0);
+    float t=.5*(normalize(r.direction).y+1.);
+    return(1.-t)*vec3(1.)+t*vec3(.5,.7,1.);
+    // return vec3(0.0);
 }
 
 Ray get_ray(Camera cam, vec2 uv) {
@@ -25,21 +25,39 @@ Ray get_ray(Camera cam, vec2 uv) {
     return Ray(cam.origin + offset, normalize(cam.llc+uv.x*cam.horizontal+uv.y*cam.vertical-cam.origin-offset));
 }
 
-Material lambert() {
+
+Material lambert(vec3 c) {
     Material m;
-    m.albedo = vec3(0.8, 0.8, 0.8);
+    m.albedo = c;
 
     return m;
 }
 
 
+bool worldHit(Ray r,float t_min,float t_max,out HitRecord hit, inout vec3 background){
+    bool intersected=false;
+    hit.dist=t_max;
+
+    Sphere s1=Sphere(vec3(0.0, 1.0, 0.0),1.0, lambert(vec3(0.7, 0.0, 0.0)));
+    if(hit_sphere(s1,r,t_min,hit.dist,hit)){
+        intersected=true;
+    }
+
+    Sphere s2=Sphere(vec3(0.0, -100.0, 0.0),100.0, lambert(vec3(0.7, 0.7, 0.7)));
+    if(hit_sphere(s2,r,t_min,hit.dist,hit)){
+        intersected=true;
+    }
+
+    return intersected;
+}
+
 
 vec3 pathtrace(Ray r){
   HitRecord hit;
   vec3 c=vec3(1.);
-  vec3 background = sky(r); 
+  vec3 background = sky(r);
   for(int i=0;i<depthMax;++i){
-    // if(worldIntersect(r,EPS,INF,hit)){
+  //  if(worldHit(r, EPS, INF, hit, background)){
     if(closestHit(r, hit)){
       Ray scattered;
       vec3 attenuation;

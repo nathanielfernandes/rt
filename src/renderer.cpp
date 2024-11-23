@@ -126,6 +126,21 @@ void Renderer::initDataBuffers() {
   std::cout << "Triangles: " << scene->bvhTranslator.nodes.size() << std::endl;
 }
 
+void Renderer::reloadMaterials() {
+  glGenBuffers(1, &materialsBuffer);
+  glBindBuffer(GL_TEXTURE_BUFFER, materialsBuffer);
+  glBufferData(GL_TEXTURE_BUFFER, scene->materials.size() * sizeof(Material),
+               &scene->materials[0], GL_STATIC_DRAW);
+  glGenTextures(1, &materialsTex);
+  glBindTexture(GL_TEXTURE_BUFFER, materialsTex);
+  glTexBuffer(GL_TEXTURE_BUFFER, GL_RGBA32F, materialsBuffer);
+
+
+  glActiveTexture(GL_TEXTURE5);
+  glBindTexture(GL_TEXTURE_BUFFER, materialsTex);
+}
+
+
 void Renderer::loadShaders() {
   vertexShaderSrc = Shadinclude::load("shaders/vertex.glsl");
   ptShaderSrc = Shadinclude::load("shaders/pt.frag");

@@ -97,6 +97,7 @@ void addMaterial(inout HitRecord hit) {
     vec4 param2 = texelFetch(materialsTex, index + 1);
 
     mat.type = int(param1.x);
+    mat.ir = param1.y;
     mat.fuzz = param1.z;
     mat.albedo = param2.rgb;
 
