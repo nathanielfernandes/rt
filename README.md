@@ -1,6 +1,8 @@
 # rt 
 
-a WIP glsl path tracer
+a ~~WIP~~ glsl path tracer
+
+> I am no longer working on this, took too long of a break from it
 
 ![render](./assets/render.png)
 
